@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Ventas</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Font Awesome icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <!-- Tu CSS personalizado -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+  <a href="#"><i class="fas fa-chart-line"></i> Dashboard</a>
+  <a href="#" id="clientesMenuBtn"><i class="fas fa-users"></i> Clientes</a>
+  <a href="#"><i class="fas fa-box"></i> Productos</a>
+  <a href="#"><i class="fas fa-shopping-cart"></i> Ventas</a>
+</div>
+
+<!-- Contenido principal -->
+<div class="content">
+  <div id="clientsSection" style="display: none;"> <!-- Aquí envuelve todo el contenido de la gestión de clientes -->
+    <h1>Gestión de Clientes</h1>
+    <div class="form-group">
+      <input type="text" class="form-control" id="searchInput" placeholder="Buscar por nombre, ciudad o estado">
+    </div>
+    <button class="btn btn-primary mb-3" id="addClientBtn">Agregar Cliente</button>
+    <div id="addClientFormContainer"></div>
+    <div id="editClientFormContainer" style="display: none;"> <!-- Formulario de edición oculto por defecto -->
+      <h3>Editar Cliente</h3>
+      <form id="editClientForm">
+        <div class="form-group">
+          <label for="tipoDocumento">Tipo de Documento:</label>
+          <input type="text" class="form-control" id="tipoDocumento" required>
+        </div>
+        <div class="form-group">
+          <label for="numeroDocumento">Número de Documento:</label>
+          <input type="text" class="form-control" id="numeroDocumento" required>
+        </div>
+        <div class="form-group">
+          <label for="nombre">Nombre:</label>
+          <input type="text" class="form-control" id="nombre" required>
+        </div>
+        <div class="form-group">
+          <label for="apellido">Apellido:</label>
+          <input type="text" class="form-control" id="apellido" required>
+        </div>
+        <div class="form-group">
+          <label for="telefono">Teléfono:</label>
+          <input type="text" class="form-control" id="telefono" required>
+        </div>
+        <div class="form-group">
+          <label for="direccion">Dirección:</label>
+          <input type="text" class="form-control" id="direccion" required>
+        </div>
+        <div class="form-group">
+          <label for="ciudad">Ciudad:</label>
+          <input type="text" class="form-control" id="ciudad" required>
+        </div>
+        <div class="form-group">
+          <label for="estado">Estado:</label>
+          <select class="form-control" id="estado" required>
+            <option value="Activo">Activo</option>
+            <option value="Inactivo">Inactivo</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary" id="submitBtn">Guardar cambios</button>
+      </form>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID Cliente</th>
+          <th>Tipo de Documento</th>
+          <th>Número de Documento</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Teléfono</th>
+          <th>Dirección</th>
+          <th>Ciudad</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="clientTableBody">
+        <!-- Aquí se insertarán los clientes dinámicamente -->
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Bootstrap JS (opcional, solo si necesitas funcionalidades de Bootstrap) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<!-- Tu JavaScript personalizado -->
+<script src="script.js"></script>
+<script>
+  // Función para mostrar la gestión de clientes
+  function showClientsManagement() {
+    const clientsSection = document.getElementById("clientsSection");
+    clientsSection.style.display = "block"; // Mostrar la sección de clientes
+    displayClients(clients); // Mostrar la lista de clientes
+  }
+
+  // Manejar clic en el botón de "Clientes" del menú lateral
+  document.getElementById("clientesMenuBtn").addEventListener("click", function() {
+    showClientsManagement();
+  });
+
+  // Función para mostrar el formulario de edición con los datos del cliente seleccionado
+  function showEditClientForm(clientId) {
+    const clientToEdit = clients.find(client => client.id === clientId);
+    document.getElementById("editClientFormContainer").style.display = "block"; // Mostrar el formulario de edición
+    // Rellenar el formulario con los datos del cliente seleccionado
+    document.getElementById("tipoDocumento").value = clientToEdit.tipoDocumento;
+    document.getElementById("numeroDocumento").value = clientToEdit.numeroDocumento;
+    document.getElementById("nombre").value = clientToEdit.nombre;
+    document.getElementById("apellido").value = clientToEdit.apellido;
+    document.getElementById("telefono").value = clientToEdit.telefono;
+    document.getElementById("direccion").value = clientToEdit.direccion;
+    document.getElementById("ciudad").value = clientToEdit.ciudad;
+    document.getElementById("estado").value = clientToEdit.estado;
+    // Cambiar el texto del botón de enviar a "Guardar cambios"
+    document.getElementById("submitBtn").innerText = "Guardar cambios";
+    // Agregar un atributo data-client-id al formulario de edición con el ID del cliente seleccionado
+    document.getElementById("editClientForm").setAttribute("data-client-id", clientId);
+  }
+
+  // Manejar clic en el botón de "Editar" en la tabla de clientes
+  document.addEventListener("click", function(event) {
+    if (event.target.classList.contains("editBtn")) {
+      const clientId = parseInt(event.target.closest("tr").getAttribute("data-client-id"));
+      showEditClientForm(clientId);
+    }
+  });
+</script>
+</body>
+</html>

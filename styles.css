@@ -1,0 +1,27 @@
+/* Estilos adicionales personalizados */
+/* Para el sidebar */
+.sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #333;
+    padding-top: 50px;
+  }
+  .sidebar a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #fff;
+    display: block;
+  }
+  .sidebar a:hover {
+    background-color: #555;
+  }
+  /* Contenido principal */
+  .content {
+    margin-left: 250px;
+    padding: 20px;
+  }
+  
