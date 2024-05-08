@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Usuarios</title>
+  <link rel="stylesheet" href="../frontend/css/clients.css">
+</head>
+<body>
+
+<div class="sidebar">
+  <a href="#"><i class="fas fa-chart-line"></i> Dashboard</a>
+  <a href="#" id="clientesMenuBtn"><i class="fas fa-users"></i> Clientes</a>
+  <a href="#"><i class="fas fa-box"></i> Productos</a>
+  <a href="#"><i class="fas fa-shopping-cart"></i> Ventas</a>
+</div>
+
+<div class="content">
+  <div id="clientsSection" style="display: none;">
+    <h1>Gestión de Clientes</h1>
+    <div class="form-group">
+      <input type="text" class="form-control" id="searchInput" placeholder="Buscar por nombre, ciudad o estado">
+    </div>
+    <button class="btn btn-primary mb-3" id="addClientBtn">Agregar Cliente</button>
+    <div id="addClientFormContainer"></div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID Cliente</th>
+          <th>Tipo de Documento</th>
+          <th>Número de Documento</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Teléfono</th>
+          <th>Dirección</th>
+          <th>Ciudad</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="clientTableBody">
+        <!-- Aquí se insertarán los clientes dinámicamente -->
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script src="../frontend/js/clients.js"></script>
+</body>
+</html>

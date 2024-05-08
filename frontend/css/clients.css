@@ -9,6 +9,7 @@
     background-color: #333;
     padding-top: 50px;
   }
+  
   .sidebar a {
     padding: 10px 15px;
     text-decoration: none;
@@ -16,12 +17,45 @@
     color: #fff;
     display: block;
   }
+  
   .sidebar a:hover {
     background-color: #555;
   }
+  
   /* Contenido principal */
   .content {
     margin-left: 250px;
     padding: 20px;
+  }
+  
+  .filter-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  input[type="text"] {
+    flex: 1;
+    padding: 10px;
+  }
+  
+  .btn {
+    margin-left: 10px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  table th,
+  table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+  }
+  
+  table th {
+    background-color: #f2f2f2;
   }
   

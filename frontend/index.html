@@ -9,7 +9,7 @@
   <!-- Font Awesome icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <!-- Tu CSS personalizado -->
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../frontend/css/styles.css">
 </head>
 <body>
 
@@ -97,46 +97,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 <!-- Tu JavaScript personalizado -->
-<script src="script.js"></script>
-<script>
-  // Función para mostrar la gestión de clientes
-  function showClientsManagement() {
-    const clientsSection = document.getElementById("clientsSection");
-    clientsSection.style.display = "block"; // Mostrar la sección de clientes
-    displayClients(clients); // Mostrar la lista de clientes
-  }
-
-  // Manejar clic en el botón de "Clientes" del menú lateral
-  document.getElementById("clientesMenuBtn").addEventListener("click", function() {
-    showClientsManagement();
-  });
-
-  // Función para mostrar el formulario de edición con los datos del cliente seleccionado
-  function showEditClientForm(clientId) {
-    const clientToEdit = clients.find(client => client.id === clientId);
-    document.getElementById("editClientFormContainer").style.display = "block"; // Mostrar el formulario de edición
-    // Rellenar el formulario con los datos del cliente seleccionado
-    document.getElementById("tipoDocumento").value = clientToEdit.tipoDocumento;
-    document.getElementById("numeroDocumento").value = clientToEdit.numeroDocumento;
-    document.getElementById("nombre").value = clientToEdit.nombre;
-    document.getElementById("apellido").value = clientToEdit.apellido;
-    document.getElementById("telefono").value = clientToEdit.telefono;
-    document.getElementById("direccion").value = clientToEdit.direccion;
-    document.getElementById("ciudad").value = clientToEdit.ciudad;
-    document.getElementById("estado").value = clientToEdit.estado;
-    // Cambiar el texto del botón de enviar a "Guardar cambios"
-    document.getElementById("submitBtn").innerText = "Guardar cambios";
-    // Agregar un atributo data-client-id al formulario de edición con el ID del cliente seleccionado
-    document.getElementById("editClientForm").setAttribute("data-client-id", clientId);
-  }
-
-  // Manejar clic en el botón de "Editar" en la tabla de clientes
-  document.addEventListener("click", function(event) {
-    if (event.target.classList.contains("editBtn")) {
-      const clientId = parseInt(event.target.closest("tr").getAttribute("data-client-id"));
-      showEditClientForm(clientId);
-    }
-  });
-</script>
+<script src="../frontend/js/script.js"></script>
 </body>
 </html>
