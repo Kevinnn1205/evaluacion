@@ -8,8 +8,8 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <!-- Font Awesome icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-  <!-- Tu CSS personalizado -->
-  <link rel="stylesheet" href="../frontend/css/styles.css">
+  <!-- Estilos personalizados -->
+  <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
 
@@ -17,7 +17,7 @@
 <div class="sidebar">
   <a href="#"><i class="fas fa-chart-line"></i> Dashboard</a>
   <a href="#" id="clientesMenuBtn"><i class="fas fa-users"></i> Clientes</a>
-  <a href="#"><i class="fas fa-box"></i> Productos</a>
+  <a href="index.html" id="productosMenuBtn"><i class="fas fa-box"></i> Productos</a> <!-- Enlace a productos.html -->
   <a href="#"><i class="fas fa-shopping-cart"></i> Ventas</a>
 </div>
 
@@ -33,42 +33,7 @@
     <div id="editClientFormContainer" style="display: none;"> <!-- Formulario de edición oculto por defecto -->
       <h3>Editar Cliente</h3>
       <form id="editClientForm">
-        <div class="form-group">
-          <label for="tipoDocumento">Tipo de Documento:</label>
-          <input type="text" class="form-control" id="tipoDocumento" required>
-        </div>
-        <div class="form-group">
-          <label for="numeroDocumento">Número de Documento:</label>
-          <input type="text" class="form-control" id="numeroDocumento" required>
-        </div>
-        <div class="form-group">
-          <label for="nombre">Nombre:</label>
-          <input type="text" class="form-control" id="nombre" required>
-        </div>
-        <div class="form-group">
-          <label for="apellido">Apellido:</label>
-          <input type="text" class="form-control" id="apellido" required>
-        </div>
-        <div class="form-group">
-          <label for="telefono">Teléfono:</label>
-          <input type="text" class="form-control" id="telefono" required>
-        </div>
-        <div class="form-group">
-          <label for="direccion">Dirección:</label>
-          <input type="text" class="form-control" id="direccion" required>
-        </div>
-        <div class="form-group">
-          <label for="ciudad">Ciudad:</label>
-          <input type="text" class="form-control" id="ciudad" required>
-        </div>
-        <div class="form-group">
-          <label for="estado">Estado:</label>
-          <select class="form-control" id="estado" required>
-            <option value="Activo">Activo</option>
-            <option value="Inactivo">Inactivo</option>
-          </select>
-        </div>
-        <button type="submit" class="btn btn-primary" id="submitBtn">Guardar cambios</button>
+        <!-- Campos del formulario de edición -->
       </form>
     </div>
     <table class="table">
@@ -91,12 +56,54 @@
       </tbody>
     </table>
   </div>
+
+  <div id="productsSection" style="display: none;"> <!-- Aquí envuelve todo el contenido de la gestión de productos -->
+    <h1>Gestión de Productos</h1>
+    <!-- Contenido de gestión de productos -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID Producto</th>
+          <th>Nombre producto</th>
+          <th>Descripción</th>
+          <th>Cantidad</th>
+          <th>Precio</th>
+          <th>IVA%</th>
+          <th>Descuento</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="productTableBody">
+        <!-- Aquí se insertarán los productos dinámicamente -->
+      </tbody>
+    </table>
+  </div>
 </div>
 
 <!-- Bootstrap JS (opcional, solo si necesitas funcionalidades de Bootstrap) -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 <!-- Tu JavaScript personalizado -->
-<script src="../frontend/js/script.js"></script>
+<script src="../js/productos.js"></script>
+
+<!-- Manejar clic en el botón de "Clientes" del menú lateral -->
+<script>
+  document.getElementById("clientesMenuBtn").addEventListener("click", function() {
+    // Ocultar la sección de productos
+    document.getElementById("productsSection").style.display = "none";
+    // Mostrar la sección de clientes
+    document.getElementById("clientsSection").style.display = "block";
+  });
+
+  // Manejar clic en el botón de "Productos" del menú lateral
+  document.getElementById("productosMenuBtn").addEventListener("click", function() {
+    // Ocultar la sección de clientes
+    document.getElementById("clientsSection").style.display = "none";
+    // Mostrar la sección de productos
+    document.getElementById("productsSection").style.display = "block";
+  });
+</script>
+
 </body>
 </html>

@@ -1,5 +1,5 @@
- // Ejemplo de datos de clientes (puedes reemplazar esto con datos de tu backend)
- let clients = [
+// Ejemplo de datos de clientes (puedes reemplazar esto con datos de tu backend)
+let clients = [
   { 
     id: 1,
     tipoDocumento: "DNI",
@@ -141,13 +141,6 @@ function filterClients(query) {
   );
 }
 
-// Función para mostrar los clientes filtrados
-function handleSearch() {
-  const query = document.getElementById("searchInput").value;
-  const filteredClients = filterClients(query);
-  displayClients(filteredClients);
-}
-
 // Función para mostrar la gestión de clientes
 function showClientsManagement() {
   const clientsSection = document.getElementById("clientsSection");
@@ -217,6 +210,7 @@ document.getElementById("editClientForm").addEventListener("submit", function(ev
   // Volver a mostrar la lista actualizada de clientes
   displayClients(clients);
 });
+
 // Función para manejar la búsqueda de clientes
 function handleSearch() {
   const query = document.getElementById("searchInput").value; // Obtener el valor del campo de búsqueda
@@ -230,4 +224,38 @@ document.getElementById("searchInput").addEventListener("input", handleSearch);
 // Manejar clic en el botón de "Agregar Cliente"
 document.getElementById("addClientBtn").addEventListener("click", function() {
   showAddClientForm();
+});
+
+// Función para eliminar un cliente
+function deleteClient(clientId) {
+  const confirmed = confirm("¿Estás seguro de que deseas eliminar este cliente?");
+  if (confirmed) {
+    clients = clients.filter(client => client.id !== clientId);
+    displayClients(clients);
+    alert("Cliente eliminado correctamente.");
+  }
+}
+
+// Función para activar o desactivar un cliente
+function toggleClientState(clientId) {
+  const clientIndex = clients.findIndex(client => client.id === clientId);
+  clients[clientIndex].estado = clients[clientIndex].estado === "Activo" ? "Inactivo" : "Activo";
+  displayClients(clients);
+  alert(`Estado del cliente actualizado a ${clients[clientIndex].estado}`);
+}
+
+// Manejar clic en el botón de "Eliminar" en la tabla de clientes
+document.addEventListener("click", function(event) {
+  if (event.target.classList.contains("deleteBtn")) {
+    const clientId = parseInt(event.target.closest("tr").getAttribute("data-client-id"));
+    deleteClient(clientId);
+  }
+});
+
+// Manejar clic en el botón de "Activar/Desactivar" en la tabla de clientes
+document.addEventListener("click", function(event) {
+  if (event.target.classList.contains("toggleStateBtn")) {
+    const clientId = parseInt(event.target.closest("tr").getAttribute("data-client-id"));
+    toggleClientState(clientId);
+  }
 });
